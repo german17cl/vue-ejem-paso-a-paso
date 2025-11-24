@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Vue.js - Formularios (App 1 - Básicos)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <!--
+    App 1: Campos básicos con v-model, validación en vivo y contadores.
+    Incluye: input text, textarea, radio y checkbox simple.
+  -->
+  <main>
+    <h1>Formulario (App 1 - Básicos)</h1>
+
+    <form @submit.prevent="handleSubmit">
+      <fieldset>
+        <legend>Texto</legend>
+        <label>
+          Nombre:
+          <input type="text" placeholder="Tu nombre" v-model="nombre">
+        </label>
+        <!-- Contador + validación -->
+        <div><small>Caracteres: {{ nombreLength }} / {{ rules.nombre.max }}</small></div>
+        <div v-if="errors.nombre" style="color:#dc2626;"><small>{{ errors.nombre }}</small></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Textarea</legend>
+        <label>
+          Biografía:
+          <textarea rows="3" cols="30" placeholder="Cuéntanos algo" v-model="bio"></textarea>
+        </label>
+        <!-- Contador + validación -->
+        <div><small>Caracteres: {{ bioLength }} / {{ rules.bio.max }}</small></div>
+        <div v-if="errors.bio" style="color:#dc2626;"><small>{{ errors.bio }}</small></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Radio</legend>
+        <label>
+          <input type="radio" name="genero" value="m" v-model="genero"> Masculino
+        </label>
+        <label>
+          <input type="radio" name="genero" value="f" v-model="genero"> Femenino
+        </label>
+        <label>
+          <input type="radio" name="genero" value="x" v-model="genero"> Prefiero no decirlo
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Checkbox</legend>
+        <label>
+          <input type="checkbox" v-model="aceptaCondiciones"> Acepto condiciones
+        </label>
+        <div v-if="!aceptaCondiciones" style="color:#b45309;"><small>Debes aceptar las condiciones</small></div>
+      </fieldset>
+
+      <div style="margin-top: 1rem;">
+        <button type="submit" :disabled="!isFormValid">Enviar</button>
+        <button type="button" @click="resetForm">Reset</button>
+      </div>
+    </form>
+
+    <h2>Vista previa de datos</h2>
+  </main>
+
+  <!-- Vuejs 3 -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="js/main1.js"></script>
+</body>
+</html>

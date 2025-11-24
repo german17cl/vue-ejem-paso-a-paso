@@ -1,0 +1,115 @@
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Vue.js - Formularios (App 2 - Selects y otros)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <!--
+    App 2: Select dependiente País→Provincia, checkboxes múltiples, select múltiple y otros inputs.
+    Incluye barra de progreso y validación básica.
+  -->
+  <main>
+    <h1>Formulario (App 2 - Selects y otros)</h1>
+
+    <!-- Barra de progreso -->
+    <div style="background:#eee;height:10px;border-radius:6px;overflow:hidden;margin:8px 0 16px;">
+      <div :style="{width: progressPercent + '%', height:'100%', background:'#60a5fa', transition:'width .2s'}"></div>
+    </div>
+    <small>Progreso: {{ progressPercent }}%</small>
+
+    <form @submit.prevent="handleSubmit">
+      <fieldset>
+        <legend>País y Provincia</legend>
+        <label>
+          País:
+          <select v-model="pais">
+            <option disabled value="">Selecciona país</option>
+            <option value="es">España</option>
+            <option value="fr">Francia</option>
+            <option value="it">Italia</option>
+          </select>
+        </label>
+        <div v-if="errors.pais" style="color:#dc2626;"><small>{{ errors.pais }}</small></div>
+
+        <label v-if="provincias.length">
+          Provincia/Estado:
+          <select v-model="provincia">
+            <option disabled value="">Selecciona provincia</option>
+            <option v-for="p in provincias" :key="p" :value="p">{{ p }}</option>
+          </select>
+        </label>
+        <div v-if="errors.provincia" style="color:#dc2626;"><small>{{ errors.provincia }}</small></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Intereses (checkboxes múltiples)</legend>
+        <label><input type="checkbox" value="frontend" v-model="intereses"> Frontend</label>
+        <label><input type="checkbox" value="backend" v-model="intereses"> Backend</label>
+        <label><input type="checkbox" value="devops" v-model="intereses"> DevOps</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Habilidades (select múltiple)</legend>
+        <label>
+          Habilidades:
+          <select v-model="habilidades" multiple size="4">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="js">JavaScript</option>
+            <option value="vue">Vue</option>
+            <option value="node">Node</option>
+          </select>
+        </label>
+        <div v-if="errors.habilidades" style="color:#dc2626;"><small>{{ errors.habilidades }}</small></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Otros inputs</legend>
+        <label>
+          Edad:
+          <input type="number" min="0" max="120" v-model.number="edad">
+        </label>
+        <div v-if="errors.edad" style="color:#dc2626;"><small>{{ errors.edad }}</small></div>
+
+        <label>
+          Satisfacción:
+          <input type="range" min="0" max="10" step="1" v-model.number="satisfaccion">
+          <strong>{{ satisfaccion }}</strong>
+        </label>
+
+        <label>
+          Fecha de cita:
+          <input type="date" v-model="fechaCita">
+        </label>
+
+        <label>
+          Hora de cita:
+          <input type="time" v-model="horaCita">
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Confirmación</legend>
+        <label>
+          <input type="checkbox" v-model="aceptaCondiciones"> Acepto condiciones
+        </label>
+      </fieldset>
+
+      <div style="margin-top: 1rem;">
+        <button type="submit" :disabled="!isFormValid">Enviar</button>
+        <button type="button" @click="resetForm">Reset</button>
+      </div>
+    </form>
+
+    <h2>Vista previa de datos</h2>
+    s
+  </main>
+
+  <!-- Vuejs 3 -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="js/main2.js"></script>
+</body>
+</html>
