@@ -16,12 +16,20 @@
         <button @click="agregarFruta">Agregar</button>
 
         <ul>
-            <li v-for="fruta in frutas">
-                <input type="text" v-model.number="fruta.cantidad"></input> {{ fruta.nombre}} <button @click="fruta.cantidad++">+</button>
+            <li v-for="fruta in frutasFiltradas" :key="fruta.nombre">
+                <input type="text" v-model.number="fruta.cantidad"></input> {{ fruta.nombre}} 
+                <button @click="fruta.cantidad++">+</button>
+                
                 <span v-if="fruta.cantidad == 0"> - Sin stock</span>
             </li>
         </ul>
-            <h2>TOTAL: {{totalFrutas}}</h2>
+            
+        <label>
+            <input type="range" min="0" max="21" step="1" v-model.number="minseleccionado">
+            Mínimo seleccionado: <strong>{{minseleccionado}}</strong>
+        </label>
+        <h2>TOTAL: {{totalFrutas}}</h2>
+        
     </main>
     
 
