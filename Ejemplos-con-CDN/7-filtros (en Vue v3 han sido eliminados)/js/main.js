@@ -32,7 +32,7 @@ const vm={
             return juegos.value.filter((juego) => juego.puntuacion >= minimo.value)
         })
         const buscarJuego = Vue.computed(() => {
-            return juegos.value.filter((juego) => juego.titulo.includes(busqueda.value))
+            return juegos.value.filter((juego) => juego.titulo.toLowerCase().includes(busqueda.value.toLowerCase()))
         })
 
         return { busqueda, minimo, juegos, mejoresJuegos, buscarJuego }

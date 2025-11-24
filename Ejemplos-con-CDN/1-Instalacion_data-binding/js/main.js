@@ -25,9 +25,12 @@ const vueApp={
     setup() { // Composition API
         const mensaje = Vue.ref('Hola mundo!')
         const semana = Vue.ref(['lunes', 'martes'])
+        const nombre = Vue.ref('Germán')
+
         return { //exponemos al template
             mensaje,
-            semana
+            semana,
+            nombre
         }
     }
 }

@@ -7,10 +7,18 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
+<style>
+    .activo {
+        color: green;
+    }
+    .texto-rojo {
+        color: red;
+    }
+    
+</style>
 <body>
     <main>
-    	<h1 v-show="conectado">Aquí utilizo v-show</h1>  <!-- 1- Si está a false pone display:none, es decir sigue estando en el DOM -->
+    	<h1 :class="{ activo: conectado, 'texto-rojo': !conectado }">Aquí utilizo v-show</h1>  <!-- 1- Si está a false pone display:none, es decir sigue estando en el DOM -->
 
 
         
@@ -33,8 +41,10 @@
             </ul>
         </template>
         <h4 v-else>No estás conectado, no ves el li :(</h4>
+        
+        <!-- v-bind sive para enlazar atributos HTML a datos de Vue -->
 
-
+        <a v-bind:href=" edad > 18 ? url : '#' ">Enlace</a>
 
 		<pre> {{ $data}}</pre>
     </main>
