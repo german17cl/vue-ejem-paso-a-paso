@@ -1,0 +1,53 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Vue.js</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <main id="app" class="container py-4">
+        <h1>Ejercicio con bootstrap cambiar clase por texto</h1>
+        
+        <input type="text" class="form-control w-50 mb-3" placeholder="Escribre una clase de fondo: bg-warning, bg-info, bg-danger..." v-model="claseFondo"></input>
+
+        <p class="text-white p-3" :class="claseFondo">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Facere necessitatibus inventore at nobis cupiditate quo fuga aperiam.</p>
+        
+        <hr>
+        <h2>Alternar clase con botón</h2>
+            
+        <label>
+            <input type="range" min="0" max="21" step="1" v-model.number="minseleccionado">
+            Mínimo seleccionado: <strong>{{minseleccionado}}</strong>
+        </label>
+        <h2>TOTAL: {{totalFrutas}}</h2>
+        
+        <hr>
+        <h3>Buscar fruta</h3>
+         <label>
+          <input type="text" placeholder="Busca tu fruta" v-model="nombreFruta">
+          <ul>
+            <li v-for="fruta in buscarFruta" :key="fruta.nombre">
+                <label type="text" v-model.number="fruta.cantidad"></label> {{ fruta.nombre}} 
+                
+                
+                <span v-if="fruta.cantidad == 0"> - Sin stock</span>
+            </li>
+        </ul>
+        </label>
+        
+    </main>
+    
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    
+    <script src="js/main.js"></script>
+</body>
+
+</html>
